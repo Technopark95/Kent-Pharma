@@ -201,7 +201,7 @@ getch();
 	
 	
 	
-	for ( ;lim != maintime;)  {
+	for ( ;lim != maintime; )  {
 		
 		// 3 5 0 3 4 1 7 3 2 5 2
 		
