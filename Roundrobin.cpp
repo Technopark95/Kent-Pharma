@@ -54,7 +54,7 @@ int main ()  {
 	
 	queue<int> ReadyQueue;
 	
-	
+	enteragain:
 	
 	cout << "How many processes are there : ";
 	
@@ -94,6 +94,30 @@ int main ()  {
 		cout << "\n\n";
 		
 	}
+	
+		bool signal = false;
+	
+	
+	for (auto start : priority)  {
+		
+		if (start == 0 )  {
+			signal = true;
+			
+			break;
+		}
+		
+		
+		
+	}
+	
+	if (signal == false )  {
+		
+		cout << endl <<endl << "There is no processes with 0 priority.Please Re-enter your detail, make sure tjere must be atleast 1 process that have 0 priority.";
+		getch();
+	
+		goto enteragain;
+	}
+	
 	
 	
 	
