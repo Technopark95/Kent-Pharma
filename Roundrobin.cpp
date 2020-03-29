@@ -71,6 +71,8 @@ int main ()  {
 	int bt[n] , t_bt;
 	
 	int lim = 0;
+	
+	string name[n];
 
 	
 	for (int take = 0 ; take < n ; ++take)  {
@@ -85,6 +87,10 @@ int main ()  {
 		
 		cout << "Enter the process Burst time : ";
 		cin >> bt[take];
+		
+		cout << "Enter the process name : ";
+		cin >> name[take];
+		
 		
 		lim = lim + bt[take];
 		
@@ -136,6 +142,8 @@ int main ()  {
 				swap(at[j] , at[j+1]);
 			
 				swap(bt[j] , bt[j+1]);
+				
+				swap(name[j] , name[j+1]);
 				
 			}
 						
