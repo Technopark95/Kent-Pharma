@@ -233,6 +233,7 @@ getch();
 	
 	
 	
+	
 	for ( ;lim != maintime; )  {
 		
 		// 3 5 0 3 4 1 7 3 2 5 2
@@ -336,7 +337,7 @@ getch();
 		for (int l = 0 ; l < n ;++l) {
 		
 		
-		cout << "P :" <<pro[l] <<  << " waiting time " << wt[l] <<endl <<endl;
+		cout << "P : " <<pro[l] <<  << " waiting time " << wt[l] <<endl <<endl;
 		
 	}
 	
