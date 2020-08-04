@@ -123,5 +123,12 @@ width: 96%;
       @media print {
         body {
         -webkit-print-color-adjust: exact; 
+     
       }
-      }
+
+      } 
+      
+      @page {
+        size: A3 landscape;
+       
+    }

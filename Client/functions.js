@@ -19,7 +19,7 @@ var options = {
     }, 
     landscape: true, 
     pagesPerSheet: 1, 
-    collate: true, 
+    collate: false, 
     copies: 1, 
     header: 'Kent Pharmaceuticals Expense record'
 } 
