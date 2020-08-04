@@ -36,6 +36,8 @@ current.addEventListener('click', (event) => {
 
 
 
+
+
 function notify(data)  {
 
 
@@ -107,9 +109,66 @@ $("#right").append(entries)
 
 
 
+function rangedquery (starting =  "2020/08/3",ending   =  "2020/08/10")  {
+
+
+    let startdate  =  new Date(starting);
+    let endingdate = new Date(ending);
+
+    while (startdate < endingdate) {
+
+
+
+let dirpath = `${startdate.getFullYear()}${startdate.getMonth()+1}`;
+let filepath = `Database/${dirpath}/${dirpath}${startdate.getDate()}`;
+
+if (filesys.existsSync(filepath)) {
+
+    let formatteddate  = startdate.getDate()+' '+getMonth(startdate.getMonth()+1)+','+startdate.getFullYear();
+
+    $("#right").append(`<p class="dateui">${formatteddate}</p>`)
+    
+    let obn = filesys.readFileSync(filepath);
+
+    let Retriveddata =JSON.parse(obn)
+    
+    
+    for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
+    
+    
+    let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div></div>`
+    
+    $("#right").append(entries)
+    
+    
+    
+    }
+    
+    
+    Retriveddata = {}
+
+}
+
+
+
+
+startdate.setDate(startdate.getDate()+1);
+
+
+
+
+    }
+
+
+}
+
+
 
 
 $(document).ready(function()  {
+
+
+
 
 
     var today = new Date();
@@ -168,6 +227,8 @@ $("#home").click(function()  {
 
    var today = new Date();
 
+
+
 $("#da").html(date)
 
 
@@ -199,7 +260,7 @@ let dirpath = `${today.getFullYear()}${(today.getMonth()+1)}`;
             }
 
 
-         });s
+         });
 })
 
 
@@ -366,7 +427,7 @@ $(this).css({color:"red" ,"transition" : "200ms"});
 
 $(document).on('click', "p.crosses"   ,function()  {
 
-    $(this).parent().parent().animate({"opacity":"0%" , "transition" : "500ms linear"} ,function() {
+    $(this).parent().parent().animate({"opacity":"0%" , "margin-bottom" :"0px", "transition" : "500ms linear"} ,function() {
 
         $(this).remove();
 
