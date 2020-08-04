@@ -1,4 +1,4 @@
 
 Client/node_modules/*
 Client/bower_components/*
-!Graphics Structure/node_modules/jquery-ui-dist/
+!client/node_modules/jquery-ui-dist/
