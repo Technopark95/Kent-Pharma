@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <title>Kent pharmaceuticals</title>
+
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.css">
+
+<style>
+
+.t {
+  position: relative;
+  left: -1%;
+  overflow-y:hidden;
+  text-align: center;
+  float: left;
+  max-height: 1000%;
+  width: 100%;
+  font-size: larger;
+  color : black;
+  backdrop-filter: blur(10px);
+  z-index: 0;
+  margin-top: 10px;
+  border: 1px black dashed;
+  vertical-align: middle;
+}
+
+
+.describing {
+
+  position: relative;
+   width: 80%;
+
+
+}
+
+.pricing  {
+
+  position: absolute;
+  height: auto;
+  top: 50%; 
+  transform: translate(0, -50%);
+   right: 0%;
+    width: 20%; 
+    vertical-align: middle;
+     background-color: rgba(107, 206, 67, 0.363);
+      text-align: center;
+
+}
+
+.closure {
+position: absolute;
+top: 0;
+right:21%;
+cursor: default;
+
+
+}
+
+.crosses {
+
+transform: scale(1000%,1000%);
+  
+}
+
+@font-face {
+font-family: "Thin";
+src: url("antipasto.ttf");
+
+}
+
+</style>
+
+</head>
+<body>
+
+  <div id="onadd" style="transition: 300ms; backdrop-filter: blur(5px); vertical-align: middle; width: 102%; height: 102%; top: -1%; left: -1%; position: fixed; background-color: rgba(0, 0, 0, 0.801);z-index: -1;opacity: 0%;">
+  
+  
+    <div id="enterd" style=" text-align: center; width:500px; height: 500px; position: absolute; background: white; border-radius: 5px; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+<p style="margin-top: 80px; font-size: larger;">Enter Description</p>
+<input id="data1" style="width:98%; height:100px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+
+<p style="font-size: larger;">Enter Expense</p>
+<input id="data2"  style="width:98%; height:100px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+
+
+<div id="doadd" style=" cursor: default; position: absolute;height: 50px; width: 100px; top: 420px; background-color: rgb(255, 127, 80); left: 50%; transform: translate(-50%,0%);">
+  <p style="font-size: xx-large; top: -30px;left: 10px; position: absolute;">+Add</p>
+</div>
+
+</div>
+
+
+  
+  </div>
+
+
+
+
+
+  <div id="onLoad" style="transition: 300ms; backdrop-filter: blur(5px); vertical-align: middle; width: 102%; height: 102%; top: -1%; left: -1%; position: fixed; background-color: rgba(0, 0, 0, 0.801);z-index: -1;opacity: 0%;">
+  
+  
+    <div id="pickthedate" style=" text-align: center; width:500px; height: 500px; position: absolute; background: white; border-radius: 5px; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+
+
+<p style="position: relative; top: 20px; font-size: xx-large;">Pick the date</p>
+
+      <div id="datepick" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);"></div>
+
+
+</div>
+
+
+  
+  </div>
+
+
+  <div id="h" style="position: fixed; width: 101%; height: 50px; background-color: rgba(0, 0, 0, 0.466);z-index: 2;top: 0; left: -1%; float: left;">
+
+    <ul style="cursor: default; position: relative; left: 1px; font-size: large;">
+      <li id="addcontent" class="dis">   <a  id="a" >+Add</a></li>
+      <li id="savecontent" class="dis">  <a id="s"  >Save</a></li>
+      <li  id="loadcontent" ><a  >View</a></li>
+      <li id="printcontent" ><a  >Print</a></li>
+      <li  id="home">        <a>Go-to Today</a></li>
+    </ul>
+
+    <p  id="stat" style=" position: absolute; color: coral ; opacity: 1;transition-duration: 1s; font-size: 200%; top:-26px; right: 0.5%;"></p>
+
+
+  </div>
+
+ <p id="da" style="position: relative; top: 40px; font-size: xx-large;z-index: 1;color: black;"></p>
+
+<div id="right">
+
+ 
+
+
+</div>
+
+
+
+<div id="dividor">
+
+</div>
+
+
+
+<script src="functions.js"></script>
+
+</body>
+</html>
