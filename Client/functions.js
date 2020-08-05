@@ -396,6 +396,13 @@ $("#onRange").css({"opacity" : "100%" , "z-index" : "3" })
 })
 
 
+$("#rangepicker").on('mouseleave', function(){
+
+$("#onRange").css({"opacity" : "0%" , "z-index" : "-1" })
+
+    
+})
+
 
 
 

@@ -1,7 +1,7 @@
 {
-  "name": "graphical-structure",
-  "version": "10.0.0",
-  "description": "Data Structure simulation",
+  "name": "kent-pharma",
+  "version": "1.0.0",
+  "description": "Expenses record",
   "main": "main.js",
   "dependencies": {
     "custom-electron-titlebar": "^3.2.3",
@@ -32,14 +32,8 @@
   },
   "build": {
     "appId": "com.anoop.graphicalstructure.api",
-    "icon": "logo1.ico",
-    "extraResources": [
-      {
-        "from": "./resources",
-        "to": "./"
-      }
-    ]
+    "icon": "water.png"
   },
   "author": "Anoop",
-  "license": "MIT"
+  "license": "ASL 2.0"
 }
