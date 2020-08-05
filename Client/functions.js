@@ -34,6 +34,7 @@ current.addEventListener('click', (event) => {
     }); 
 }); 
 
+var totaling= 0;
 
 
 
@@ -68,6 +69,7 @@ $( "#datepick" ).datepicker({
   onSelect: function (dateText, inst) {
 
     $("#right").empty();
+    totaling = 0;
 
     $('#onLoad').css({"opacity" : "0%" , "z-index" : "-1"  })
     
@@ -95,12 +97,17 @@ $( "#datepick" ).datepicker({
 
 let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div></div>`
 
+
+totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
+
 $("#right").append(entries)
 
 
 
-    }
 
+
+    }
+$("#totaln").text(totaling)
   
 
   },
@@ -116,7 +123,11 @@ $( "#endrange" ).datepicker({ dateFormat: 'yy/mm/dd' });
 
 function rangedquery (starting =  "2020-08-3",ending   =  "2020-08-10")  {
 
+totaling = 0;
 
+$("#right").empty();
+$(".dis").css({"cursor" : "no-drop", "pointer-events" :"none"})
+     $("#a,#s").css({color: "rgba(0,0,0,.4)"})
     let startdate  =  new Date(starting);
     let endingdate = new Date(ending);
 
@@ -143,6 +154,8 @@ if (filesys.existsSync(filepath)) {
     
     let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div></div>`
     
+    totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
+
     $("#right").append(entries)
     
     
@@ -163,6 +176,8 @@ startdate.setDate(startdate.getDate()+1);
 
 
     }
+
+    $("#totaln").text(totaling)
 
 
 }
@@ -218,11 +233,16 @@ $(document).ready(function()  {
             
             let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div><div class="closure"><p class ="crosses"> &times; </p></div></div>`
             
+            totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
+
+
             $("#right").append(entries)
             
             
             
                 }
+
+                $("#totaln").text(totaling)
 
             }
 
@@ -238,6 +258,7 @@ $(document).ready(function()  {
 
 $("#home").click(function()  {
 
+    totaling = 0;
     $("#right").empty();
 
     $(".dis").css({  "cursor" : "default", "pointer-events" :"auto"})
@@ -268,13 +289,14 @@ let dirpath = `${today.getFullYear()}${(today.getMonth()+1)}`;
             
             let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div><div class="closure"><p class ="crosses"> &times; </p></div></div>`
             
+            totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
             $("#right").append(entries)
             
             
             
                 }
 
-              
+                $("#totaln").text(totaling)
             }
 
 
@@ -386,6 +408,9 @@ let entries = `<div class="t"><div  class="describing"><p class ="cont" >${des}<
 
 $("#right").append(entries)
 
+totaling = totaling + parseFloat(exp,10)
+$("#totaln").text(totaling)
+
 $('#onadd').css({"opacity" : "0%" , "z-index" : "-1" })
 $('#data1').val("");
 $('#data2').val("");
@@ -455,6 +480,11 @@ $(document).on('click', "p.crosses"   ,function()  {
     $(this).parent().parent().animate({"opacity":"0%" , "margin-bottom" :"0px", "transition" : "500ms linear"} ,function() {
 
         $(this).remove();
+
+      let cut=  parseFloat( $(this).children().eq(1).children().text())
+        
+        totaling = totaling - cut
+       $("#totaln").text(totaling)
 
 
     })
