@@ -109,13 +109,18 @@ $("#right").append(entries)
 
 
 
-function rangedquery (starting =  "2020/08/3",ending   =  "2020/08/10")  {
+$( "#startrange" ).datepicker({ dateFormat: 'yy/mm/dd' });
+$( "#endrange" ).datepicker({ dateFormat: 'yy/mm/dd' });
+
+
+
+function rangedquery (starting =  "2020-08-3",ending   =  "2020-08-10")  {
 
 
     let startdate  =  new Date(starting);
     let endingdate = new Date(ending);
 
-    while (startdate < endingdate) {
+    while (startdate <= endingdate) {
 
 
 
@@ -164,6 +169,19 @@ startdate.setDate(startdate.getDate()+1);
 
 
 
+$("#selrange").click(()=> {
+
+    $("#right").empty();
+    $('#onRange').css({"opacity" : "0%" , "z-index" : "-1" })
+    
+    let s=   $( "#startrange" ).datepicker({ dateFormat: 'yy/mm/dd' }).val();
+    let e =    $( "#endrange" ).datepicker({ dateFormat: 'yy/mm/dd' }).val();
+   
+
+rangedquery(s,e);
+
+   })
+   
 
 $(document).ready(function()  {
 
@@ -346,6 +364,13 @@ $("#pickthedate").on("mouseleave", function( ) {
 
 })
 
+
+$("#range").on('click', function(){
+
+$("#onRange").css({"opacity" : "100%" , "z-index" : "3" })
+
+    
+})
 
 
 

@@ -3,7 +3,7 @@ body {
 
   font-family: segoe ui;
   overflow-x: hidden;
-  display: block;
+  
 }
 
 div.ui-datepicker{
@@ -19,12 +19,13 @@ div.ui-datepicker{
 #right {
 
 
-position: absolute;
+position: fixed;
 top: 120px;
 width: 101%;
-height: 84%;
+max-height: 78%;
 font-size: larger;
 background-color: rgba(255, 255, 255, 0.377);
+overflow-y: scroll;
 
 }
 

@@ -23,7 +23,7 @@
   backdrop-filter: blur(10px);
   z-index: 0;
   margin-top: 10px;
-  border: 1px black solid;
+  border: 1px black dashed;
   vertical-align: middle;
 }
 
@@ -45,9 +45,9 @@
    right: 0%;
     width: 20%; 
     vertical-align: middle;
-     background-color: rgba(0, 0, 0, 0.788);
+     background-color: rgba(107, 206, 67, 0.363);;
       text-align: center;
-      color: white;
+      color: black;
 
 }
 
@@ -130,6 +130,34 @@ src: url("antipasto.ttf");
   </div>
 
 
+
+
+  <div id="onRange" style="transition: 300ms; backdrop-filter: blur(5px); vertical-align: middle; width: 102%; height: 102%; top: -1%; left: -1%; position: fixed; background-color: rgba(0, 0, 0, 0.801);z-index: -1;opacity: 0%;">
+  
+  
+    <div id="rangepicker" style=" text-align: center; width:1000px; height: 500px; position: absolute; background: white; border-radius: 5px; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+
+
+<p style="position: relative; top: 10px; font-size: xx-large;">Pick the Range</p>
+
+   <div id="startrange" style="position: absolute; top: 50%; left: 22%; transform: translate(-50%,-50%);"></div>
+
+
+<div id="endrange" style="position: absolute; top: 50%; right: 5%; transform: translate(0,-50%);"></div>
+
+
+<div id="selrange" style="position: absolute; background-color: rgba(0, 0, 0, 0.788); height:50px;width: 100px; left: 50%; bottom: 100px; transform: translate(-50%,0);text-align: center; vertical-align: middle;"><p style="font-size: 200%; position: absolute; top: -30px ;left: 12px; color: coral; cursor: default;">Done</p></div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
   <div id="h" style="position: fixed; width: 101%; height: 50px; background-color: rgba(0, 0, 0, 0.466);z-index: 2;top: 0; left: -1%; float: left;">
 
     <ul style="cursor: default; position: relative; left: 1px; font-size: large;">
@@ -137,6 +165,7 @@ src: url("antipasto.ttf");
       <li id="savecontent" class="dis">  <a id="s"  >Save</a></li>
       <li  id="loadcontent" ><a  >View</a></li>
       <li id="printcontent" ><a  >Print</a></li>
+      <li id="range" ><a  >Range View</a></li>
       <li  id="home">        <a>Go-to Today</a></li>
     </ul>
 
@@ -160,7 +189,7 @@ src: url("antipasto.ttf");
 
 </div>
 
-<img src="water.png" style="position: fixed; top: 50%; left: 50%; filter: grayscale(1); transform: translate(-50%,-50%); opacity: .1; z-index: 1;" />
+<img src="water.png" style="position: fixed; top: 50%; left: 50%; filter: grayscale(1); transform: translate(-50%,-50%); opacity: .1; z-index: 1; pointer-events: none;" />
 
 
 <script src="functions.js"></script>
