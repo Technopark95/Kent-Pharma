@@ -485,7 +485,7 @@ $(this).css({color:"red" ,"transition" : "200ms"});
 
 $(document).on('click', "p.crosses"   ,function()  {
 
-    $(this).parent().parent().animate({"opacity":"0%" , "margin-bottom" :"0px", "transition" : "500ms linear"} ,function() {
+    $(this).parent().parent().animate({"opacity":"0%" , "max-height" :"0px", "margin-bottom" :"0px"},1000 ,function() {
 
         $(this).remove();
 
