@@ -69,6 +69,7 @@ $( "#datepick" ).datepicker({
   onSelect: function (dateText, inst) {
 
     $("#right").empty();
+    $("#totaln").text("0")
     totaling = 0;
 
     $('#onLoad').css({"opacity" : "0%" , "z-index" : "-1"  })
@@ -83,7 +84,8 @@ $( "#datepick" ).datepicker({
 
 
      let date = retdate+' '+getMonth(retmonth)+','+retyear;
-     $("#da").html(date)
+
+     $("#right").append(`<p class="dateui">${date}</p>`)  
 
      let dirpath = `${retyear}${retmonth}`;
 
@@ -107,7 +109,7 @@ $("#right").append(entries)
 
 
     }
-$("#totaln").text(totaling)
+$("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
   
 
   },
@@ -177,7 +179,7 @@ startdate.setDate(startdate.getDate()+1);
 
     }
 
-    $("#totaln").text(totaling)
+    $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
 
 
 }
@@ -242,7 +244,7 @@ $(document).ready(function()  {
             
                 }
 
-                $("#totaln").text(totaling)
+                $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
 
             }
 
@@ -267,8 +269,7 @@ $("#home").click(function()  {
    var today = new Date();
 
 
-
-$("#da").html(date)
+$("#right").append(`<p class="dateui">${date}</p>`)  
 
 
 let dirpath = `${today.getFullYear()}${(today.getMonth()+1)}`;
@@ -296,7 +297,7 @@ let dirpath = `${today.getFullYear()}${(today.getMonth()+1)}`;
             
                 }
 
-                $("#totaln").text(totaling)
+                $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
             }
 
 
@@ -409,7 +410,7 @@ let entries = `<div class="t"><div  class="describing"><p class ="cont" >${des}<
 $("#right").append(entries)
 
 totaling = totaling + parseFloat(exp,10)
-$("#totaln").text(totaling)
+$("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
 
 $('#onadd').css({"opacity" : "0%" , "z-index" : "-1" })
 $('#data1').val("");
@@ -484,7 +485,7 @@ $(document).on('click', "p.crosses"   ,function()  {
       let cut=  parseFloat( $(this).children().eq(1).children().text())
         
         totaling = totaling - cut
-       $("#totaln").text(totaling)
+       $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
 
 
     })
