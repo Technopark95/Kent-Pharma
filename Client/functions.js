@@ -265,6 +265,7 @@ $("#home").click(function()  {
 
     $(".dis").css({  "cursor" : "default", "pointer-events" :"auto"})
     $("#a,#s").css({color: "white"})
+    $("#totaln").text("0")
 
    var today = new Date();
 
@@ -515,6 +516,9 @@ $(document).on('mouseleave' , "p.crosses" ,function()  {
 
 
     $('#data2').keypress(function(e)  {
+
+
+if (e.which == 46)  return true;
 
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                    return false;
