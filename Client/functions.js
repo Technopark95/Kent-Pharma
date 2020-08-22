@@ -97,8 +97,16 @@ $( "#datepick" ).datepicker({
     for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
 
 
-let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div></div>`
-
+        let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
+        <div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
+        <div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
+        <div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
+        <div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
+        <div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
+        <div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
+        <div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
+        <div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+                    </div>`
 
 totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
 
@@ -154,8 +162,16 @@ if (filesys.existsSync(filepath)) {
     for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
     
     
-    let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div></div>`
-    
+        let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
+        <div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
+        <div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
+        <div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
+        <div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
+        <div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
+        <div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
+        <div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
+        <div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+                    </div>`
     totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
 
     $("#right").append(entries)
@@ -233,7 +249,17 @@ $(document).ready(function()  {
                 for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
             
             
-            let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div><div class="closure"><p class ="crosses"> &times; </p></div></div>`
+            let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
+<div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
+<div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
+<div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
+<div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
+<div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
+<div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
+<div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
+<div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+<div class="closure"><p class ="crosses"> &times; </p></div>
+            </div>`
             
             totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
 
@@ -289,8 +315,18 @@ let dirpath = `${today.getFullYear()}${(today.getMonth()+1)}`;
                 for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
             
             
-            let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing"><p>${Retriveddata[doWork]["exp"]}</p></div><div class="closure"><p class ="crosses"> &times; </p></div></div>`
-            
+                    let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
+                    <div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
+                    <div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
+                    <div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
+                    <div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
+                    <div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
+                    <div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
+                    <div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
+                    <div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+                    <div class="closure"><p class ="crosses"> &times; </p></div>
+                                </div>`
+
             totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
             $("#right").append(entries)
             
@@ -410,10 +446,30 @@ $("#onRange").css({"opacity" : "0%" , "z-index" : "-1" })
 $("#doadd").on('click',function()  {
 
 let des = $('#data1').val();
-let exp = $('#data2').val();
+let exp = parseFloat($('#data2').val());
+let pf = $('#pf').val();
+let rb = $('#rb').val();
+let DATE = $('#DATE').val();
+let IGST = parseFloat( $('#igst').val());
+let CGST = parseFloat($('#cgst').val());
+let SGST = parseFloat($('#sgst').val());
+let bn = $('#bn').val();
+
+let tomtal = (exp + ((IGST/100)*exp) + ((CGST/100)*exp) + ((SGST/100)*exp));
 
 
-let entries = `<div class="t"><div  class="describing"><p class ="cont" >${des}</p></div><div class="pricing"><p>${exp}</p></div><div class="closure"><p class ="crosses"> &times; </p></div></div>`
+let entries = `<div class="t"><div  class="describing"><p class ="cont" >${des}</p></div><div class="pricing" style="left:10%"><p>${pf}</p></div>
+<div class="pricing" style="left:20%"><p>${bn}</p></div>
+<div class="pricing" style="left:30%"><p>${DATE}</p></div>
+<div class="pricing" style="left:40%"><p>${exp}</p></div>
+<div class="pricing" style="left:50%"><p>${CGST}</p></div>
+<div class="pricing" style="left:60%"><p>${IGST}</p></div>
+<div class="pricing" style="left:70%"><p>${SGST}</p></div>
+<div class="pricing" style="left:80%"><p>${tomtal}</p></div>
+<div class="pricing" style="left:90%"><p>${rb}</p></div>
+
+<div class="closure"><p class ="crosses"> &times; </p></div>
+</div>`
 
 $("#right").append(entries)
 
@@ -439,7 +495,15 @@ $("#savecontent").on('click' , function()  {
 
    
         onedata['des'] = $(this).children().eq(0).text();
-        onedata['exp'] = $(this).children().eq(1).text();
+        onedata['pf'] = $(this).children().eq(1).text();
+        onedata['bn'] = $(this).children().eq(2).text();
+        onedata['DATE'] = $(this).children().eq(3).text();
+        onedata['exp'] = $(this).children().eq(4).text();
+        onedata['CGST'] = $(this).children().eq(5).text();
+        onedata['IGST'] = $(this).children().eq(6).text();
+        onedata['SGST'] = $(this).children().eq(7).text();
+        onedata['tomtal'] = $(this).children().eq(8).text();
+        onedata['rb'] = $(this).children().eq(9).text();
     
 
         wholearray.push(onedata);
