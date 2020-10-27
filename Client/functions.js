@@ -35,8 +35,76 @@ current.addEventListener('click', (event) => {
 }); 
 
 var totaling= 0;
+var grandtotaling= 0;
 
 
+
+
+
+
+
+/*
+
+var sqlite = require('sqlite-cipher'); //requiring
+
+ async function g()   {
+
+ 
+//Connecting - (databaseFile, [password], [algorithm])
+sqlite.connect('Daa.enc','myPass','aes-256-ctr');
+
+
+
+console.log(sqlite.run("SELECT * from Users"));
+
+
+// Closing connection 
+sqlite.close();
+ }
+
+
+
+ g();
+
+
+
+
+
+   var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('hula.db');
+   var retdata;
+
+
+
+
+db.serialize(function() {
+
+
+
+ 
+
+    db.all("SELECT * from Users where Age >18",function(err,rows){  
+        if(err)  
+                             {  
+            console.log(err);  
+        }  
+        else{  
+
+            retdata= rows;  
+        }
+    });  
+
+});
+ 
+db.close();
+
+
+}
+
+
+
+
+*/
 
 
 function notify(data)  {
@@ -62,7 +130,6 @@ setTimeout(()=> {
 
 
 
-
 var doclength;
 
 $( "#datepick" ).datepicker({
@@ -70,7 +137,9 @@ $( "#datepick" ).datepicker({
 
     $("#right").empty();
     $("#totaln").text("0")
+    $("#totalng").text("0")
     totaling = 0;
+    grandtotaling =0;
 
     $('#onLoad').css({"opacity" : "0%" , "z-index" : "-1"  })
     
@@ -97,27 +166,33 @@ $( "#datepick" ).datepicker({
     for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
 
 
-        let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
-        <div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
-        <div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
-        <div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
-        <div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
-        <div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
-        <div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
-        <div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
-        <div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+        let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p class="ocont">${Retriveddata[doWork]["pf"]}</p></div>
+        <div class="pricing" style="left:20%"><p class="ocont">${Retriveddata[doWork]["bn"]}</p></div>
+        <div class="pricing" style="left:30%"><p class="ocont">${Retriveddata[doWork]["DATE"]}</p></div>
+        <div class="pricing" style="left:40%"><p class="ocont">${Retriveddata[doWork]["exp"]}</p></div>
+        <div class="pricing" style="left:50%"><p class="ocont">${Retriveddata[doWork]["IGST"]}</p></div>
+        <div class="pricing" style="left:60%"><p class="ocont">${Retriveddata[doWork]["CGST"]}</p></div>
+        <div class="pricing" style="left:70%"><p class="ocont">${Retriveddata[doWork]["SGST"]}</p></div>
+        <div class="pricing" style="left:80%"><p class="ocont">${Retriveddata[doWork]["tomtal"]}</p></div>
+        <div class="pricing" style="left:90%"><p class="ocont">${Retriveddata[doWork]["rb"]}</p></div>
+        <div class="index-holder"><p class="index-text">${doWork+1}</p></div>
                     </div>`
 
 totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
+grandtotaling = grandtotaling +  Math.round( parseFloat(Retriveddata[doWork]["tomtal"] ));
 
 $("#right").append(entries)
 
-
+$(".t").resizable({resize: function(event, ui) {
+    ui.size.width = ui.originalSize.width;
+}});
 
 
 
     }
 $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+$("#totalng").text(grandtotaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+
   
 
   },
@@ -134,6 +209,7 @@ $( "#endrange" ).datepicker({ dateFormat: 'yy/mm/dd' });
 function rangedquery (starting =  "2020-08-3",ending   =  "2020-08-10")  {
 
 totaling = 0;
+grandtotaling =0;
 
 $("#right").empty();
 $(".dis").css({"cursor" : "no-drop", "pointer-events" :"none"})
@@ -141,6 +217,7 @@ $(".dis").css({"cursor" : "no-drop", "pointer-events" :"none"})
     let startdate  =  new Date(starting);
     let endingdate = new Date(ending);
 
+    var rangedindex= 0;
     while (startdate <= endingdate) {
 
 
@@ -159,24 +236,29 @@ if (filesys.existsSync(filepath)) {
     let Retriveddata =JSON.parse(obn)
     
     
-    for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
+    for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork,++rangedindex) {
     
     
-        let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
-        <div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
-        <div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
-        <div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
-        <div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
-        <div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
-        <div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
-        <div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
-        <div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+        let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p class="ocont">${Retriveddata[doWork]["pf"]}</p></div>
+        <div class="pricing" style="left:20%"><p class="ocont">${Retriveddata[doWork]["bn"]}</p></div>
+        <div class="pricing" style="left:30%"><p class="ocont">${Retriveddata[doWork]["DATE"]}</p></div>
+        <div class="pricing" style="left:40%"><p class="ocont">${Retriveddata[doWork]["exp"]}</p></div>
+        <div class="pricing" style="left:50%"><p class="ocont">${Retriveddata[doWork]["IGST"]}</p></div>
+        <div class="pricing" style="left:60%"><p class="ocont">${Retriveddata[doWork]["CGST"]}</p></div>
+        <div class="pricing" style="left:70%"><p class="ocont">${Retriveddata[doWork]["SGST"]}</p></div>
+        <div class="pricing" style="left:80%"><p class="ocont">${Retriveddata[doWork]["tomtal"]}</p></div>
+        <div class="pricing" style="left:90%"><p class="ocont">${Retriveddata[doWork]["rb"]}</p></div>
+        <div class="index-holder"><p class="index-text">${rangedindex+1}</p></div>
                     </div>`
     totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
+    grandtotaling = grandtotaling +  Math.round( parseFloat(Retriveddata[doWork]["tomtal"] ));
+    
 
     $("#right").append(entries)
     
-    
+    $(".t").resizable({resize: function(event, ui) {
+        ui.size.width = ui.originalSize.width;
+    }});
     
     }
     
@@ -196,6 +278,7 @@ startdate.setDate(startdate.getDate()+1);
     }
 
     $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+    $("#totalng").text(grandtotaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
 
 
 }
@@ -224,7 +307,7 @@ $(document).ready(function()  {
 
     var today = new Date();
 
-    $("#da").html(date)
+    $("#da").text(date)
 
 
     let op = {
@@ -244,34 +327,42 @@ $(document).ready(function()  {
             else {
 
                 let Retriveddata =JSON.parse(obn)
+    let doWork;
     
-    
-                for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
+                for( doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
             
             
-            let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
-<div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
-<div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
-<div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
-<div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
-<div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
-<div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
-<div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
-<div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+            let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p class="ocont">${Retriveddata[doWork]["pf"]}</p></div>
+<div class="pricing" style="left:20%"><p class="ocont">${Retriveddata[doWork]["bn"]}</p></div>
+<div class="pricing" style="left:30%"><p class="ocont">${Retriveddata[doWork]["DATE"]}</p></div>
+<div class="pricing" style="left:40%"><p class="ocont">${Retriveddata[doWork]["exp"]}</p></div>
+<div class="pricing" style="left:50%"><p class="ocont">${Retriveddata[doWork]["IGST"]}</p></div>
+<div class="pricing" style="left:60%"><p class="ocont">${Retriveddata[doWork]["CGST"]}</p></div>
+<div class="pricing" style="left:70%"><p class="ocont">${Retriveddata[doWork]["SGST"]}</p></div>
+<div class="pricing" style="left:80%"><p class="ocont">${Retriveddata[doWork]["tomtal"]}</p></div>
+<div class="pricing" style="left:90%"><p class="ocont">${Retriveddata[doWork]["rb"]}</p></div>
 <div class="closure"><p class ="crosses"> &times; </p></div>
+<div class="index-holder"><p class="index-text">${doWork+1}</p></div>
             </div>`
             
             totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
+            grandtotaling = grandtotaling +  Math.round( parseFloat(Retriveddata[doWork]["tomtal"] ));
+    
 
 
             $("#right").append(entries)
             
+            $(".t").resizable({resize: function(event, ui) {
+                ui.size.width = ui.originalSize.width;
+            }});
+            
             
             
                 }
+                currentindex = doWork;
 
                 $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
-
+                $("#totalng").text(grandtotaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
             }
 
 
@@ -287,12 +378,13 @@ $(document).ready(function()  {
 $("#home").click(function()  {
 
     totaling = 0;
+    grandtotaling =0;
     $("#right").empty();
 
     $(".dis").css({  "cursor" : "default", "pointer-events" :"auto"})
     $("#a,#s").css({color: "white"})
     $("#totaln").text("0")
-
+    $("#totalng").text("0")
    var today = new Date();
 
 
@@ -310,31 +402,41 @@ let dirpath = `${today.getFullYear()}${(today.getMonth()+1)}`;
             else {
 
                 let Retriveddata =JSON.parse(obn)
+                let doWork
     
-    
-                for(let doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
+                for( doWork =0 ; doWork < Retriveddata.length ; ++doWork) {
             
             
-                    let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p>${Retriveddata[doWork]["pf"]}</p></div>
-                    <div class="pricing" style="left:20%"><p>${Retriveddata[doWork]["bn"]}</p></div>
-                    <div class="pricing" style="left:30%"><p>${Retriveddata[doWork]["DATE"]}</p></div>
-                    <div class="pricing" style="left:40%"><p>${Retriveddata[doWork]["exp"]}</p></div>
-                    <div class="pricing" style="left:50%"><p>${Retriveddata[doWork]["IGST"]}</p></div>
-                    <div class="pricing" style="left:60%"><p>${Retriveddata[doWork]["CGST"]}</p></div>
-                    <div class="pricing" style="left:70%"><p>${Retriveddata[doWork]["SGST"]}</p></div>
-                    <div class="pricing" style="left:80%"><p>${Retriveddata[doWork]["tomtal"]}</p></div>
-                    <div class="pricing" style="left:90%"><p>${Retriveddata[doWork]["rb"]}</p></div>
+                    let entries = `<div class="t"><div  class="describing"><p class ="cont" >${Retriveddata[doWork]["des"]}</p></div><div class="pricing" style="left:10%"><p class="ocont">${Retriveddata[doWork]["pf"]}</p></div>
+                    <div class="pricing" style="left:20%"><p class="ocont">${Retriveddata[doWork]["bn"]}</p></div>
+                    <div class="pricing" style="left:30%"><p class="ocont">${Retriveddata[doWork]["DATE"]}</p></div>
+                    <div class="pricing" style="left:40%"><p class="ocont">${Retriveddata[doWork]["exp"]}</p></div>
+                    <div class="pricing" style="left:50%"><p class="ocont">${Retriveddata[doWork]["IGST"]}</p></div>
+                    <div class="pricing" style="left:60%"><p class="ocont">${Retriveddata[doWork]["CGST"]}</p></div>
+                    <div class="pricing" style="left:70%"><p class="ocont">${Retriveddata[doWork]["SGST"]}</p></div>
+                    <div class="pricing" style="left:80%"><p class="ocont">${Retriveddata[doWork]["tomtal"]}</p></div>
+                    <div class="pricing" style="left:90%"><p class="ocont">${Retriveddata[doWork]["rb"]}</p></div>
                     <div class="closure"><p class ="crosses"> &times; </p></div>
+                    <div class="index-holder"><p class="index-text">${doWork+1}</p></div>
                                 </div>`
 
             totaling = totaling + parseFloat(Retriveddata[doWork]["exp"] );
+            grandtotaling = grandtotaling +  Math.round( parseFloat(Retriveddata[doWork]["tomtal"] ));
+    
             $("#right").append(entries)
+
+            $(".t").resizable({resize: function(event, ui) {
+                ui.size.width = ui.originalSize.width;
+            }});
             
             
             
                 }
 
+                currentindex = doWork;
+
                 $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+                $("#totalng").text(grandtotaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
             }
 
 
@@ -379,11 +481,35 @@ $("#da").html(date)
 
 
 
-$("#addcontent").on("click", function( ) {
+$("#doadd").on("mouseenter", function() {
 
 
 
-   $('#onadd').css({"opacity" : "100%" , "z-index" : "3" })
+   $('#doadd').css({"background-color" : "black" , "transition" : "200ms" })
+   $('#addbtntext').css({"color" : "coral" , "transition" : "200ms" })
+ 
+
+
+})
+
+
+$("#doadd").on("mouseleave", function() {
+
+
+
+   $('#doadd').css({"background-color" : "coral" , "transition" : "1s" })
+   $('#addbtntext').css({"color" : "black" })
+ 
+
+
+})
+
+
+$("#addcontent").on("click", function() {
+
+
+
+   $('#onadd').css({"opacity" : "100%" , "z-index" : "10" })
  
 
 
@@ -406,7 +532,7 @@ $("#enterd").on("mouseleave", function( ) {
 $("#loadcontent").on('click',function()  {
 
 
-  $('#onLoad').css({"opacity" : "100%" , "z-index" : "3" })
+  $('#onLoad').css({"opacity" : "100%" , "z-index" : "10" })
  
 })
 
@@ -427,7 +553,7 @@ $("#pickthedate").on("mouseleave", function( ) {
 
 $("#range").on('click', function(){
 
-$("#onRange").css({"opacity" : "100%" , "z-index" : "3" })
+$("#onRange").css({"opacity" : "100%" , "z-index" : "10" })
 
     
 })
@@ -441,46 +567,79 @@ $("#onRange").css({"opacity" : "0%" , "z-index" : "-1" })
 })
 
 
-
+var currentindex = 0;
 
 $("#doadd").on('click',function()  {
+
+    ++currentindex;
 
 let des = $('#data1').val();
 let exp = parseFloat($('#data2').val());
 let pf = $('#pf').val();
 let rb = $('#rb').val();
 let DATE = $('#DATE').val();
-let IGST = parseFloat( $('#igst').val());
-let CGST = parseFloat($('#cgst').val());
-let SGST = parseFloat($('#sgst').val());
+
+
+let IGST =  $('#igst').val();
+
+if(IGST.charAt(IGST.length-1)== '%'){
+
+IGST=(parseFloat(IGST.toString())/100)*exp;
+
+
+
+}
+
+
+let CGST = $('#cgst').val();
+
+if(CGST.charAt(CGST.length-1)=='%'){
+    CGST=(parseFloat(CGST.toString())/100)*exp;
+    
+}
+
+let SGST = $('#sgst').val();
+
+if(SGST.charAt(SGST.length-1)=='%'){
+    SGST=(parseFloat(SGST.toString())/100)*exp;
+   
+}
+
 let bn = $('#bn').val();
 
-let tomtal = (exp + ((IGST/100)*exp) + ((CGST/100)*exp) + ((SGST/100)*exp));
+let tomtal = parseFloat(exp)+parseFloat(CGST)+ parseFloat(IGST)+parseFloat(SGST);
 
 
-let entries = `<div class="t"><div  class="describing"><p class ="cont" >${des}</p></div><div class="pricing" style="left:10%"><p>${pf}</p></div>
-<div class="pricing" style="left:20%"><p>${bn}</p></div>
-<div class="pricing" style="left:30%"><p>${DATE}</p></div>
-<div class="pricing" style="left:40%"><p>${exp}</p></div>
-<div class="pricing" style="left:50%"><p>${CGST}</p></div>
-<div class="pricing" style="left:60%"><p>${IGST}</p></div>
-<div class="pricing" style="left:70%"><p>${SGST}</p></div>
-<div class="pricing" style="left:80%"><p>${tomtal}</p></div>
-<div class="pricing" style="left:90%"><p>${rb}</p></div>
-
+let entries = `<div class="t"><div  class="describing"><p class ="cont" >${des}</p></div><div class="pricing" style="left:10%"><p class="ocont">${pf}</p></div>
+<div class="pricing" style="left:20%"><p class="ocont">${bn}</p></div>
+<div class="pricing" style="left:30%"><p class="ocont">${DATE}</p></div>
+<div class="pricing" style="left:40%"><p class="ocont">${exp}</p></div>
+<div class="pricing" style="left:50%"><p class="ocont">${CGST}</p></div>
+<div class="pricing" style="left:60%"><p class="ocont">${IGST}</p></div>
+<div class="pricing" style="left:70%"><p class="ocont">${SGST}</p></div>
+<div class="pricing" style="left:80%"><p class="ocont">${tomtal.toFixed(2)}</p></div>
+<div class="pricing" style="left:90%"><p class="ocont">${rb}</p></div>
 <div class="closure"><p class ="crosses"> &times; </p></div>
+<div class="index-holder"><p class="index-text">${currentindex}</p></div>
 </div>`
 
 $("#right").append(entries)
 
-totaling = totaling + parseFloat(exp,10)
+$(".t").resizable({resize: function(event, ui) {
+    ui.size.width = ui.originalSize.width;
+}});
+
+totaling = totaling + parseFloat(exp)
+grandtotaling = grandtotaling +  Math.round( parseFloat(tomtal ));
 $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+$("#totalng").text(grandtotaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
 
 $('#onadd').css({"opacity" : "0%" , "z-index" : "-1" })
-$('#data1').val("");
-$('#data2').val("");
+$('.inps').val("");
 
 })
+
+
 
 var storingdata = new Object();
   let onedata = {}
@@ -554,10 +713,23 @@ $(document).on('click', "p.crosses"   ,function()  {
 
         $(this).remove();
 
-      let cut=  parseFloat( $(this).children().eq(1).children().text())
-        
+      let cut=  parseFloat( $(this).children().eq(4).children().text())
+      let grandcut= Math.round( parseFloat( $(this).children().eq(8).children().text()))
         totaling = totaling - cut
+        grandtotaling = grandtotaling - grandcut
        $("#totaln").text(totaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+       $("#totalng").text(grandtotaling.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+
+  let alteringindex = 1;
+       $('#right').children('.t').each(function () {
+
+      
+
+        $(this).children().eq(11).children().text(alteringindex);
+
+        ++alteringindex;
+
+    })
 
 
     })
@@ -579,14 +751,15 @@ $(document).on('mouseleave' , "p.crosses" ,function()  {
 
 
 
-    $('#data2').keypress(function(e)  {
+    $('#data2,#igst,#cgst,#sgst').keypress(function(e)  {
 
 
-if (e.which == 46)  return true;
+if (e.which == 46  || e.which == 37)  return true;
 
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                    return false;
         }
     })
+
 
 

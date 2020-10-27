@@ -2,4 +2,8 @@
 Client/node_modules/*
 Client/bower_components/*
 Client/dist/*
+Group Chat/*
+Hello/*
+atif.html
+package-lock.json
 !client/node_modules/jquery-ui-dist/

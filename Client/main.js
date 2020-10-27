@@ -23,7 +23,7 @@ function createWindow () {
   
 
 
-//win.removeMenu()
+win.removeMenu()
 
 
 shortcut.register('f5', function() {
@@ -69,4 +69,7 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+
+//https://docs.woocommerce.com/document/add-a-custom-field-in-an-order-to-the-emails/#:~:text=You%20can%20add%20any%20custom,from%20PayPal%20orders%2C%20for%20example.
 

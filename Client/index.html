@@ -12,21 +12,41 @@
 
 .t {
   position: relative;
-  left: -1%;
+  left: -20px;
   overflow-y:hidden;
   text-align: center;
-  float: left;
   max-height: 1000%;
   width: 100%;
   font-size: 120%;
   color : black;
   backdrop-filter: blur(10px);
-  z-index: 0;
-  margin-top: 10px;
+  z-index: 1;
+  margin-top: 4px;
   border: 1px black solid;
   vertical-align: middle;
+  overflow-x: hidden;
+  
 
 }
+
+.fixedtitle {
+  position: relative;
+  left: -1%;
+  overflow-y:hidden;
+  text-align: center;
+  max-height: 1000%;
+  width: 100%;
+  font-size: 120%;
+  color : black;
+  backdrop-filter: blur(10px);
+  z-index: 3;
+  margin-top: 4px;
+  border: 1px black solid;
+  vertical-align: middle;
+  
+
+}
+
 
 
 .describing {
@@ -41,15 +61,16 @@
 .pricing  {
   font-size: 80%;
   position: absolute;
-  height: auto;
+
   top: 50%; 
   transform: translate(0, -50%);
    left: 0%;
     width: 10%; 
-    vertical-align: middle;
-     background-color: rgba(107, 206, 67, 0.363);;
+
+   /*  background-color: rgba(106, 206, 67, 0.116);  */
       text-align: center;
       color: black;
+      overflow-y: scroll;
 
 }
 
@@ -57,9 +78,10 @@
 
 .closure {
 position: absolute;
-top: -30px;
+top: -45px;
 left:8.5%;
 cursor: default;
+padding-top: 20px;
 
 
 }
@@ -68,20 +90,41 @@ cursor: default;
 
 .dateui {
 
-  position: relative;
+
     font-size: xx-large;
-    z-index: 0;
-    top:20px;
+    z-index: 2;
+    top:30px;
     color: black;
-padding-top: 20px;
+    position:inherit;
+
 
 }
+
+
+.index-holder {
+
+  position:absolute;
+   height:0px; 
+   top: -12px;
+   left: 25px;
+}
+
+.index-text {
+
+  font-family:consolas;
+  font-size:70%;
+  height:0px;
+  color:rgb(0, 0, 0);
+}
+
+
 
 @font-face {
 font-family: "Thin";
 src: url("antipasto.ttf");
 
 }
+
 
 </style>
 
@@ -96,23 +139,23 @@ src: url("antipasto.ttf");
     <div id="enterd" style=" text-align: center; width:90%; height: 80%; position: absolute; background: white; border-radius: 5px; top: 50%; left: 50%; transform: translate(-50%,-50%);">
 
 
-<input id="data1" placeholder="Description" style="text-align: center; position: absolute; width:80%; height:50px;left: 50%; transform: translate(-50%,-50%); top:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<input id="data1" class="inps" placeholder="Description" style="text-align: center; position: absolute; width:80%; height:50px;left: 50%; transform: translate(-50%,-50%); top:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 
 <div style="position: absolute; top: 15%; left: 10%;">
 <p style="font-size: larger;">Purchased from</p>
-<input id="pf"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<input id="pf" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 </div>
 
 
 <div style="position: absolute; top: 40%;left: 10%;">
 <p style="font-size: larger;">Received by</p>
-<input id="rb"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<input id="rb" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 </div>
 
 
 <div style="position: absolute; top: 65%;left: 10%;">
 <p style="font-size: larger;">Bill No.</p>
-<input id="bn"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<input id="bn" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 </div>
 
 
@@ -120,7 +163,7 @@ src: url("antipasto.ttf");
 
 <div style="position: absolute; top: 15%;left:40%;">
 <p style="font-size: larger;">Date</p>
-<input id="DATE"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<input id="DATE" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 </div>
 
 
@@ -128,26 +171,26 @@ src: url("antipasto.ttf");
 
 <div style="position: absolute; top: 40%;left:40%;">
 <p style="font-size: larger;">Taxable amount</p>
-<input id="data2"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<input id="data2" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 </div>
 
-
-
-<div style="position: absolute; top: 65%;left:40%;">
-<p style="font-size: larger;">CGST (%)</p>
-<input id="cgst"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
-</div>
 
 
 <div style="position: absolute; top: 15%;right:10%;">
-<p style="font-size: larger;">IGST (%)</p>
-<input id="igst"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<p style="font-size: larger;">CGST</p>
+<input id="cgst" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 </div>
 
 
 <div style="position: absolute; top: 40%;right:10%;">
-<p style="font-size: larger;">SGST (%)</p>
-<input id="sgst"  style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+<p style="font-size: larger;">IGST</p>
+<input id="igst" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
+</div>
+
+
+<div style="position: absolute; top: 65%;right:10%;">
+<p style="font-size: larger;">SGST</p>
+<input id="sgst" class="inps" style="width:80%; height:50px; border: none; background-color: rgba(0, 0, 0, 0.795); font-size: x-large; color: coral;">
 </div>
 
 
@@ -158,8 +201,8 @@ src: url("antipasto.ttf");
 
 
 
-<div id="doadd" style=" cursor: default; position: absolute;height: 50px; width: 100px; bottom: 10px; background-color: rgb(255, 127, 80); left: 50%; transform: translate(-50%,0%);">
-  <p style="font-size: xx-large; top: -30px;left: 10px; position: absolute;">+Add</p>
+<div id="doadd" style=" cursor: default; position: absolute;height: 50px; width: 100px; top: 75%; background-color: rgb(255, 127, 80); left: 50%; transform: translate(-50%,0%);">
+  <p id="addbtntext" style="font-size: xx-large; top: -30px;left: 10px; position: absolute;">+Add</p>
 
 </div>
 
@@ -222,7 +265,7 @@ src: url("antipasto.ttf");
 
 
 
-  <div id="h" style="position: fixed; width: 101%; height: 50px; background-color: rgba(0, 0, 0, 0.466);z-index: 2;top: 0; left: -1%; float: left;">
+  <div id="h" style="position: fixed; width: 101%; height: 50px; background-color: rgba(0, 0, 0, 0.466);z-index: 6;top: 0; left: -1%; float: left;">
 
     <ul style="cursor: default; position: relative; left: 1px; font-size: large;">
       <li id="addcontent" class="dis">   <a  id="a" >+Add</a></li>
@@ -238,17 +281,17 @@ src: url("antipasto.ttf");
 
   </div>
 
-  <div class="t" style="position: fixed; top: 40px; left: 1px; z-index: 1;">
-        <div  class="describing"><p class ="cont" >Description</p></div>
-        <div class="pricing" style="left:9.5%;width: 10.5%;;background-color:rgba(255, 0, 0, 0.589);"><p>Purchased from</p></div>
-        <div class="pricing" style="left:20%;background-color:rgba(255, 0, 0, 0.589);"><p>Bill No.</p></div>
-        <div class="pricing" style="left:30%;background-color:rgba(255, 0, 0, 0.589);"><p>Date</p></div>
-        <div class="pricing" style="left:40%;background-color:rgba(255, 0, 0, 0.589);"><p>Taxable amount</p></div>
-        <div class="pricing" style="left:50%;background-color:rgba(255, 0, 0, 0.589);"><p>IGST(%)</p></div>
-        <div class="pricing" style="left:60%;background-color:rgba(255, 0, 0, 0.589);"><p>CGST(%)</p></div>
-        <div class="pricing" style="left:70%;background-color:rgba(255, 0, 0, 0.589);"><p>SGST(%)</p></div>
-        <div class="pricing" style="left:80%;background-color:rgba(255, 0, 0, 0.589);"><p>Total</p></div>
-        <div class="pricing" style="left:90%;background-color:rgba(255, 0, 0, 0.589);"><p>Received by</p></div>
+  <div class="fixedtitle" style="position: fixed; top: 45px; left: 0px; z-index: 6;">
+        <div  class="describing"><p class ="cont"  style="top:2px;" >Description</p></div>
+        <div class="pricing" style="left:9.5%;width: 10.5%;background-color:rgba(52, 150, 57, 0.589);"><p>Purchased from</p></div>
+        <div class="pricing" style="left:20%;background-color:rgba(52, 150, 57, 0.589);"><p>Bill No.</p></div>
+        <div class="pricing" style="left:30%;background-color:rgba(52, 150, 57, 0.589);"><p>Date</p></div>
+        <div class="pricing" style="left:40%;background-color:rgba(52, 150, 57, 0.589);"><p>Taxable amount</p></div>
+        <div class="pricing" style="left:50%;background-color:rgba(52, 150, 57, 0.589);"><p>CGST</p></div>
+        <div class="pricing" style="left:60%;background-color:rgba(52, 150, 57, 0.589);"><p>IGST</p></div>
+        <div class="pricing" style="left:70%;background-color:rgba(52, 150, 57, 0.589);"><p>SGST</p></div>
+        <div class="pricing" style="left:80%;background-color:rgba(52, 150, 57, 0.589);" title="Taxable + (IGST% of taxable)+ (CGST% of taxable)+ (SGST% of taxable) "><p>Total</p></div>
+        <div class="pricing" style="left:90%;background-color:rgba(52, 150, 57, 0.589);"><p>Received by</p></div>
                     </div>
 
  
@@ -258,10 +301,6 @@ src: url("antipasto.ttf");
 
 </div>
 
-
-
-<div id="dividor" style="left: 9.5%;">
-</div>
 
 <div id="dividor" style="left: 20%;">
 </div>
@@ -292,12 +331,19 @@ src: url("antipasto.ttf");
 <div id="dividor" style="left: 90%;">
 </div>
 
-<img src="water.png" style="position: fixed; top: 50%; left: 50%; filter: grayscale(1); transform: translate(-50%,-50%); opacity: .1; z-index: 1; pointer-events: none;" />
+<img src="water.png" style="position: fixed; top: 50%; left: 50%; filter: grayscale(1); transform: translate(-50%,-50%); opacity: .1; z-index: 5; pointer-events: none;" />
 
-<div id="t" style="backdrop-filter: blur(6px); position: fixed;bottom: 0; left: 0;  background-color: rgba(0, 0, 0, 0.685); width: 100%; height: 50px;">
-  <p id="totals" style="position: relative; left: 60%; transform: translate(0,-70%); font-size: xx-large;color:white">Total</p>
- <div style="position: absolute;  width: 300px; right:0; top: 45px; transform: translate(0,-75%); text-align: center;font-size-adjust: 0.81;">  <p  id="totaln" style="font-size: 140%;color:white;" >0</p></div>
+<div id="t" style="backdrop-filter: blur(6px); position: fixed;bottom: 0; left: 0;  background-color: rgba(0, 0, 0, 0.685); width: 100%; height: 50px;z-index: 6;">
  
+  <p id="totals" style="position: absolute; left: 10%; transform: translate(0,-70%); font-size: xx-large;color:white">Total</p>
+ <div style="position: absolute;  width: 300px; left:14%; top: 45px; transform: translate(0,-75%); text-align: center;font-size-adjust: 0.81;">  <p  id="totaln" style="font-size: 140%;color:white;" >0</p></div>
+ 
+
+
+ <p id="totalss" style="position: absolute; left: 50%; transform: translate(0,-70%); font-size: xx-large;color:white">Grand Total</p>
+ <div style="position: absolute;  width: 300px; left:60%; top: 45px; transform: translate(0,-75%); text-align: center;font-size-adjust: 0.81;">  <p  id="totalng" style="font-size: 140%;color:white;" >0</p></div>
+ 
+
   </div>
 
 <script src="functions.js"></script>
